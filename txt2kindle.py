@@ -17,7 +17,7 @@ import shutil
 
 
 #chapter reg exp
-h2re = re.compile(r'\s*第.*章\s+.*')
+h2re = re.compile(r'\s*第.*章\s*.*')
 
 #chapter list
 h2array = []

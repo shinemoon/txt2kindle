@@ -8,7 +8,7 @@ Usage:
 
 *Better to add this script's path into sys environmental paramenter for convienience.*
 
-python <PathtoScript>/txt2kindle.py *pathToRawTxtFile* *NovelName* **<NovelAuthor>**
+python PathtoScript/txt2kindle.py **pathToRawTxtFile** **NovelName** *NovelAuthor*
 
 Then, one mobi file will be generated in same folder where you execute this command.
 
@@ -32,7 +32,7 @@ Note:
 
 *建议将本脚本路径加入系统环境变量，以便使用*
 
-python <脚本路径>/txt2kindle.py *Txt文件路径* *小说名* **<作者名>**
+python 脚本路径/txt2kindle.py **Txt文件路径** **小说名** *作者名*
 
 执行后，mobi文件会在你执行命令的目录生成。
 

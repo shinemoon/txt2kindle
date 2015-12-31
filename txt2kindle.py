@@ -149,7 +149,7 @@ def txt2html(tgt):
 
 
 if(len(sys.argv)==1):
-    print "Please use : txt2kindle <txt file path> "
+    print "Please use : txt2kindle <txt file path> <novel name> <novel author>"
 else:
     tgt = sys.argv[1]
     title = sys.argv[2]

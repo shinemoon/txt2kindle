@@ -16,6 +16,9 @@
 <item id="toc" properties="nav" href="combined.html" media-type="application/xhtml+xml"/>
 <item id="content" media-type="application/xhtml+xml" href="combined.html"></item>
 <item id="cover-image" media-type="image/png" href="cover.png"/>
+<item href="title.otf" id="title.otf" media-type="application/vnd.ms-opentype"/>
+<item href="normal.otf" id="normal.otf" media-type="application/vnd.ms-opentype"/>
+
 <!--item id="ncx" media-type="application/x-dtbncx+xml" href="toc.ncx"/-->
 </manifest>
 <spine>

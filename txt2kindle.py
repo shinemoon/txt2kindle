@@ -17,7 +17,7 @@ import shutil
 
 
 #chapter reg exp
-h2re = re.compile(r'\s*第.*章\s*.*')
+h2re = re.compile(r'.*(第.*章.*)')
 
 #chapter list
 h2array = []
@@ -59,6 +59,13 @@ def txtMerger(txtFiles=[]):
     hstr  = hstr + "<style>ol{list-style-type:none;}</style>\n"
     hstr  = hstr + "<style>#toc{page-break-before:always;page-break-after:always;}</style>\n"
     hstr  = hstr + "<style>h2 {page-break-before:always;}</style>\n"
+#    hstr  = hstr + "<style>body {line-height:1.1em;}</style>\n"
+    hstr  = hstr + "<style>@font-face {font-family: 'normal.ttf';src: url('normal.ttf');}</style>\n"
+    hstr  = hstr + "<style>@font-face {font-family: 'title.ttf';src: url('title.ttf');}</style>\n"
+    #hstr  = hstr + '<style>h2 {text-align:center;font-size:1.4em;font-family:STKai!important;margin-bottom:3em;}</style>\n'
+    hstr  = hstr + '<style>h3 {text-align:center;font-size:1.4em;font-family:"title.ttf"!important;margin-bottom:2em;}</style>\n'
+    hstr  = hstr + '<style>h2 {text-align:center;font-size:1.4em;font-family:"title.ttf"!important;margin-bottom:2em;}</style>\n'
+    hstr  = hstr + "<style>p {font-family:'normal.ttf'!important;}</style>\n"
     hstr  = hstr + "</head>\n"
     hstr  = hstr + "<body>\n"
     with open("t2k_tmp/head.split.html","w") as outputf:
@@ -72,7 +79,8 @@ def txtMerger(txtFiles=[]):
         outputf.write(estr)
 
     print "... Assemblying TOC part"
-    estr = '<nav id="toc" epub:type="toc">\n'
+    estr = '<h3> 书籍目录 </h3>' 
+    estr = estr + '<nav id="toc" epub:type="toc">\n'
     estr = estr+'<ol>\n'
     for i in range(len(h2array)):
 	    estr=estr+'<li><a href="#%d">%s</a></li>\n'%(i+1, h2array[i])
@@ -85,7 +93,15 @@ def txtMerger(txtFiles=[]):
     fsplit.join()
 
     # Handle sample
-    shutil.copy("%s/cover.png"%(libpath),"t2k_tmp/cover.png")
+    import os
+
+    shutil.copy("%s/normal.ttf"%(libpath),"t2k_tmp/normal.ttf")
+    shutil.copy("%s/title.ttf"%(libpath),"t2k_tmp/title.ttf")
+
+    if(os.path.exists("cover.png")):
+        shutil.copy("cover.png","t2k_tmp/cover.png")
+    else:
+        shutil.copy("%s/cover.png"%(libpath),"t2k_tmp/cover.png")
     with open("%s/sample.opf"%(libpath),"r") as inputf:
         with open("t2k_tmp/%s.opf"%(title),"w") as outputf:
             opfstr=""
@@ -101,7 +117,7 @@ def txtMerger(txtFiles=[]):
     # Clean
     try:
         shutil.copy("t2k_tmp/%s.mobi"%(title),"%s.mobi"%(title))
-        #shutil.rmtree(osw.pDir()+"/t2k_tmp")
+        shutil.rmtree(osw.pDir()+"/t2k_tmp")
         pass
     except:
         pass
@@ -119,7 +135,9 @@ def txtHandle(cnt):
             outputf = open(fname+'.shtml', 'w')
             for line in inputf.readlines():
                str = line.decode('gbk','ignore').encode('utf-8')
-               if(h2re.match(str)):
+               m = h2re.match(str)
+               if(m):
+                    str = m.group(1)
                     h2cnt = h2cnt + 1
                     h2array.append(str.strip('\n').strip('\r'))
                     str = "<h2 id='%d'>"%(h2cnt)+str.strip('\n').strip('\r')+"</h2>\n"

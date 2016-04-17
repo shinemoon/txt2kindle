@@ -20,7 +20,8 @@ Note:
 ## Req
 - Python 2.7 installed
 - kindlegen installed, and can be called in cmd with 'kindlegen'(or to modify txt2kindle.py to assign specified path to kindlegen)
-- Only Tested in Unix/Linux/OSX, assuming Windows should be OK , if dependancies /path setting is right.   
+- Tested in Unix/Linux/OSX/Windows
+- Please replace the font for 'normal' and 'title' by your self based on your flavor.
 
 # txt2kindle 说明
 
@@ -44,6 +45,7 @@ python 脚本路径/txt2kindle.py **Txt文件路径** **小说名** *作者名*
 ## 需求
 - Python 2.7
 - 安装kindlegen , 可以通过'kindlegen'直接调用（否则，请修改txt2kindle.py修改kindlegen为正确路径）
-- 仅在 Unix/Linux/OSX 测试过, 如果路径等问题确认，理论上也支持Windows.    
+- Unix/Linux/OSX/Windows 测试后均可支持
+- 请自行准备并替换normal和title对应的正文和标题字体
 
 
